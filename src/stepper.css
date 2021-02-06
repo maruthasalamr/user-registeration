@@ -1,0 +1,104 @@
+/* .badge {
+  height: 30px;
+  width: 30px;
+  background: #ed5901;
+  border-radius: 50%;
+  align-items: center;
+  text-align: center;
+} */
+.badgeclr{
+	border-radius: 50%;
+    padding: 5px 8px 8px 8px;
+	margin-right: 5px;
+}
+.bg_select{
+    background: #ED5901;
+}
+.unselect_bg{
+    background: #28435A;
+}
+.gender_btn{
+height: 40px;
+width: 89px;
+left: 0px;
+top: 0px;
+border-radius: 3px;
+border: none;
+outline: none !important;
+background: #FFFFFF;
+border: 1px solid #ECECEC;
+box-sizing: border-box;
+color: black;
+}
+.gender_btn:hover{
+	background:rgba(237, 89, 1, 0.1);
+	color: #ED5901;
+}
+.next-btn{
+border-radius: 3px;
+border: none;
+outline: none !important;
+width: 100%;
+background-color: #ED5901;
+height: 40px;
+color: #FFFFFF;
+}
+.back_btn{
+	border-radius: 3px;
+border: none;
+outline: none !important;
+width: 100%;
+background-color: #F4F6F7;
+height: 40px;
+color: #0A0909;
+
+}
+.inputwidth>.react-tel-input .form-control{
+      width: 100%;
+}
+.text_color{
+	color: #ED5901;
+}
+.userimg{
+	background: #F8F9FA;
+height: 60px;
+width: 60px;
+left: 0px;
+top: 0px;
+border-radius: 50%;
+
+}
+.headingdiv{
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 43px;
+text-align: center;
+color: #0A0909;
+}
+.input_height{
+	height: 50px;
+}
+.cardbg{
+	background-color: #FFFFFF;
+}
+.card_custom{
+	border: none !important;
+	background: #fff;
+    color: #666;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08)
+}
+ .gender_btn:active{
+    background: #FFFFFF;
+ }
+.hideinput{
+    display: none;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ED5901;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #f2711c42;
+}
