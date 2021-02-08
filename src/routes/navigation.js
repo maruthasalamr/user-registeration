@@ -4,6 +4,7 @@ import history from "../helpers/history";
 import Home from "../Components/home";
 import CompanyPage from "../Components/CompanyDetails";
 import EmailVerification from "../Components/EmailVerification";
+import SuccessPage from "../Components/successPage";
 export default function navigation() {
   return (
     <Router history={history}>
@@ -11,6 +12,7 @@ export default function navigation() {
         <Route exact path="/" component={Home} />
         <Route path ="/companydetails" component={CompanyPage} />
         <Route path="/emailverification" component={EmailVerification} />
+        <Route path="/Successpage" component={SuccessPage} />
       </div>
     </Router>
   );
