@@ -1,11 +1,4 @@
-/* .badge {
-  height: 30px;
-  width: 30px;
-  background: #ed5901;
-  border-radius: 50%;
-  align-items: center;
-  text-align: center;
-} */
+
 .badgeclr{
 	border-radius: 50%;
     padding: 5px 8px 8px 8px;
@@ -188,4 +181,31 @@ color: #0A0909;
 }
 .otpform >.form-control {
     margin-right: 12px
+}
+.custom_tab a{
+    color: #fff !important;
+}
+.nav-link.active>span{
+    background: #ED5901;
+}
+.nav-tabs .nav-link{
+    width: 33% !important;
+}
+.nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color:#2E4B64 !important;
+    border-color:#2E4B64;
+}
+.nav-tabs{
+    border-bottom: 0px solid #dee2e6 !important;
+}
+.nav-tabs .nav-link{
+    background:#2E4B64 !important;
+    border: 0px solid transparent !important;
+    border-top-left-radius: 0rem !important;
+    border-top-right-radius: 0rem !important;
+    padding: 20px;
+}
+.a{
+  color: #fff !important;
 }

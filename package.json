@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^12.6.3",
     "otp-input-react": "^0.2.4",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-bootstrap-tabs": "^2.0.0",
     "react-dom": "^17.0.1",
     "react-phone-input-2": "^2.7.1",
     "react-router-dom": "^5.2.0",

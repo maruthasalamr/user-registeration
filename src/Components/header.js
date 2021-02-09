@@ -1,21 +1,28 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React,{useState} from "react";
+import CompanyPage from "./CompanyDetails";
+import EmailVerification from "./EmailVerification";
+import PersonalDetails from "./personaldetails";
 import "../stepper.css";
+import { Tabs, Tab } from "react-bootstrap";
 function Header() {
-  const location = useLocation();
-  console.log("location.pathnam;",location.pathname);
-  const getCurrentRoute = () =>{
-    return location.pathname.split('/')[1].toLowerCase()
+  const [key, setkey] = useState(1)
+  const handleselect = (key) =>{
+    setkey(key);
   }
-    return (
-    <div class="container-fluid p-3 text-white bgcolor">
-        <div class="row">
-          <div class="col-4"><span class={"badge badgeclr "+(getCurrentRoute() == '' ? 'bg_select':'unselect_bg')}>1</span>Personal Details</div>
-          <div class="col-4"><span class={"badge badgeclr "+(getCurrentRoute() == 'companydetails' ? 'bg_select':'unselect_bg')}>2</span>Company Details</div>
-          <div class="col-4"><span class={"badge badgeclr "+(getCurrentRoute() == 'emailverification' ? 'bg_select':'unselect_bg')}>3</span>Email Verification</div>
-        </div>
+const next_btn = (key) =>{
+  setkey(key);
+}
+  return (
+    <div>
+      <div class="container-fluid p-3">
+        <Tabs activeKey={key} onSelect={handleselect} id="controlled-tab-example">
+          <Tab eventKey={1} title="1 Personal Details"><PersonalDetails selectfun={next_btn}/></Tab>
+          <Tab eventKey={2} title="2 Company Details"><CompanyPage thirdtab={next_btn} firstab={next_btn}/></Tab>
+          <Tab eventKey={3} title="3 Email Verification"><EmailVerification second_tab={next_btn}/></Tab>
+        </Tabs>
       </div>
-    )
+    </div>
+  );
 }
 
-export default Header
+export default Header;

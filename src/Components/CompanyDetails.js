@@ -1,73 +1,71 @@
 import React, { useState } from "react";
-import Header from "./header";
 import noimage from "../static/images/image_icon.png";
-import history from "../helpers/history";
-function CompanyDetails() {
+function CompanyDetails({ thirdtab, firstab }) {
   const uploadcompanylogo = () => {
     document.getElementById("customFile").click();
   };
-  
   const [companydetails, setcompanydetails] = useState({
-    company_logo: "",
+    company_logo: noimage,
     company_name: "",
     email_id: "",
     job_title: "",
-    experiance: "",
-    terms:false
+    experiance: null,
+    terms: false,
   });
-  const handleinput = (e) =>{
-    if(e.target.checked){
+  const handleinput = (e) => {
+    if (e.target.checked) {
       setcompanydetails({
         ...companydetails,
         terms: true,
-      })
-    }
-    else{
+      });
+    } else {
       setcompanydetails({
         ...companydetails,
         terms: false,
-      })
+      });
     }
-  }
-   const sendbtn = (e) =>{
-    if(companydetails.company_name ==  ""){
-           document.getElementById('valid_companyname').style.display = "block";
-           setTimeout(() => {
-            document.getElementById('valid_companyname').style.display = "none";
-           }, 3000);
-    }
-    else if(companydetails.email_id == ""){
-      document.getElementById('valid_email').style.display = "block";
+  };
+  const handlefileinput = (e) => {
+    var objecturl = URL.createObjectURL(e.target.files[0]);
+    setcompanydetails({
+      ...companydetails,
+      company_logo: objecturl,
+    });
+  };
+  const sendbtn = (e) => {
+    if (companydetails.company_name == "") {
+      document.getElementById("valid_companyname").style.display = "block";
       setTimeout(() => {
-       document.getElementById('valid_email').style.display = "none";
+        document.getElementById("valid_companyname").style.display = "none";
       }, 3000);
-    }
-    else if(companydetails.job_title == ""){
-      document.getElementById('valid_job').style.display = "block";
+    } else if (companydetails.email_id == "") {
+      document.getElementById("valid_email").style.display = "block";
       setTimeout(() => {
-       document.getElementById('valid_job').style.display = "none";
+        document.getElementById("valid_email").style.display = "none";
       }, 3000);
-    }
-    else if(companydetails.experiance == ""){
-      document.getElementById('valid_expe').style.display = "block";
+    } else if (companydetails.job_title == "") {
+      document.getElementById("valid_job").style.display = "block";
       setTimeout(() => {
-       document.getElementById('valid_expe').style.display = "none";
+        document.getElementById("valid_job").style.display = "none";
       }, 3000);
-    }
-    else if(companydetails.terms == false){
-      document.getElementById('valid_terms').style.display = "block";
+    } else if (companydetails.experiance == null) {
+      document.getElementById("valid_expe").style.display = "block";
       setTimeout(() => {
-       document.getElementById('valid_terms').style.display = "none";
+        document.getElementById("valid_expe").style.display = "none";
       }, 3000);
+    } else if (companydetails.terms == false) {
+      document.getElementById("valid_terms").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("valid_terms").style.display = "none";
+      }, 3000);
+    } else {
+      localStorage.setItem("companydetails", JSON.stringify(companydetails));
+      thirdtab(3);
     }
-    else{
-      localStorage.setItem('companydetails',JSON.stringify(companydetails))
-      history.push("/emailverification");
-    }
-  }
+  };
+
   return (
     <div>
-      <Header />
       <div class="container-sm pt-3" style={{ width: "40rem" }}>
         <h1>Add your company details</h1>
         <p>
@@ -79,11 +77,20 @@ function CompanyDetails() {
             <div>
               <div className="row">
                 <div class="col-sm-4">
-                  <img src={noimage} alt="prof" className="userimg" />
+                  <img
+                    src={companydetails.company_logo}
+                    alt="prof"
+                    className="userimg"
+                  />
                 </div>
                 <div class="col-sm-8 pt-4">
                   <div class="">
-                    <input type="file" className="hideinput" id="customFile" />
+                    <input
+                      type="file"
+                      className="hideinput"
+                      id="customFile"
+                      onChange={(e) => handlefileinput(e)}
+                    />
                     <a
                       class="text_color text-left"
                       for="customFile"
@@ -109,9 +116,12 @@ function CompanyDetails() {
                   }
                   required
                 />
-                <div id="valid_companyname" className="invalid" style={{display:'none'}}>
-                     Please enter company name.
-                 </div>
+                <div
+                  id="valid_companyname"
+                  className="invalid"
+                  style={{ display: "none" }}>
+                  Please enter company name.
+                </div>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Email Id</label>
@@ -129,9 +139,12 @@ function CompanyDetails() {
                   }
                   required
                 />
-                <div id="valid_email" className="invalid" style={{display:'none'}}>
-                     Please enter valid email.
-                 </div>
+                <div
+                  id="valid_email"
+                  className="invalid"
+                  style={{ display: "none" }}>
+                  Please enter valid email.
+                </div>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Job Title</label>
@@ -149,9 +162,12 @@ function CompanyDetails() {
                   }
                   required
                 />
-                 <div id="valid_job" className="invalid" style={{display:'none'}}>
-                     Please enter your job titile.
-                 </div>
+                <div
+                  id="valid_job"
+                  className="invalid"
+                  style={{ display: "none" }}>
+                  Please enter your job titile.
+                </div>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">
@@ -161,7 +177,7 @@ function CompanyDetails() {
                   class="form-control"
                   id="inputEmail3"
                   placeholder="Years of Experience"
-                  type="text"
+                  type="number"
                   value={companydetails.experiance}
                   onChange={(e) =>
                     setcompanydetails({
@@ -171,29 +187,50 @@ function CompanyDetails() {
                   }
                   required
                 />
-                  <div id="valid_expe" className="invalid" style={{display:'none'}}>
-                     Please enter your experiance.
-                 </div>
+                <div
+                  id="valid_expe"
+                  className="invalid"
+                  style={{ display: "none" }}>
+                  Please enter your experiance.
+                </div>
               </div>
               <div class="form-check small">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" value={companydetails.terms} onChange={(e)=>handleinput(e)} required />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value={companydetails.terms}
+                    onChange={(e) => handleinput(e)}
+                    required
+                  />
                   <span>I accept the</span>
                   <span className="text_color">&nbsp;Terms and Conditions</span>
                 </label>
-                <div id="valid_terms" className="invalid" style={{display:'none'}}>
-                     Please accept the terms and Conditions
-                 </div>
+                <div
+                  id="valid_terms"
+                  className="invalid"
+                  style={{ display: "none" }}>
+                  Please accept the terms and Conditions
+                </div>
               </div>
               <div class="row pt-3">
                 <div class="col-sm-4">
-                  <button class="back_btn" onClick={(e) => history.push("/")}>
+                  <button class="back_btn" onClick={() => firstab(1)}>
                     Back
                   </button>
                 </div>
                 <div class="col-sm-8">
                   <button
-                    className={"next-btn "+(companydetails.company_name !==""&&companydetails.job_title !==""&&companydetails.experiance !==""&&companydetails.email_id !==""&&companydetails.terms!==false ? 'enable_btn':'disable_btn')}
+                    className={
+                      "next-btn " +
+                      (companydetails.company_name !== "" &&
+                      companydetails.job_title !== "" &&
+                      companydetails.experiance !== null &&
+                      companydetails.email_id !== "" &&
+                      companydetails.terms !== false
+                        ? "enable_btn"
+                        : "disable_btn")
+                    }
                     onClick={(e) => sendbtn(e)}>
                     Send OTP
                   </button>
